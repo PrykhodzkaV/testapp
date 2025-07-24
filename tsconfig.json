@@ -1,3 +1,14 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+      "@/constants/*": ["./constants/*"],
+      "@/api/*": ["./api/*"],
+      "@/screens/*": ["./screens/*"],
+      "@/types/*": ["./types/*"]
+    }
+  }
 }
