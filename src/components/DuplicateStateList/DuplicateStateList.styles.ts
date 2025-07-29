@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 12,
     paddingHorizontal: 24,
+    backgroundColor: colors.background,
   },
   filterInput: {
     height: 40,
@@ -17,13 +18,10 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
     fontSize: 16,
   },
-  title: {
-    backgroundColor: colors.background,
-    paddingBottom: 16,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
   header: {
     backgroundColor: colors.background,
+    paddingBottom: 8,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

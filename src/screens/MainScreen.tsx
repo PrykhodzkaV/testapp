@@ -1,25 +1,35 @@
-import React, { useContext } from 'react';
-import { ActivityIndicator } from 'react-native';
+import React from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
-import { DuplicateStateList, ErrorView, StateList } from '@/components';
+import {
+  DuplicateStateList,
+  ErrorView,
+  SearchField,
+  StateList,
+} from '@/components';
 import { NO_STATE_FOUND_ERROR_MESSAGE } from '@/constants';
-import { AppContext } from '@/context';
-import { useFetchStates } from '@/hooks';
 
 import { styles } from './MainScreen.styles';
+import { useMainScreen } from './useMainScreen';
 
 export const MainScreen = () => {
-  const { state } = useContext(AppContext);
-  const { getStates } = useFetchStates();
-  const { isLoading, error } = state;
+  const {
+    filterText,
+    setFilterText,
+    filteredStates,
+    isLoading,
+    getStates,
+    error,
+  } = useMainScreen();
   return !error ? (
     isLoading ? (
       <ActivityIndicator style={styles.loadingIndicator} size="large" />
     ) : (
-      <>
+      <View style={styles.container}>
         <StateList onRefresh={getStates} />
-        <DuplicateStateList />
-      </>
+        <SearchField filterText={filterText} setFilterText={setFilterText} />
+        <DuplicateStateList states={filteredStates} />
+      </View>
     )
   ) : (
     <ErrorView

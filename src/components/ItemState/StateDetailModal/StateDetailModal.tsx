@@ -1,5 +1,11 @@
 import React from 'react';
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import { CLOSE_BUTTON_TEXT } from '@/constants';
 
@@ -30,19 +36,28 @@ export const StateDetailModal = React.memo<StateDetailModalProps>(
         onRequestClose={onClose}
         statusBarTranslucent={true}
         presentationStyle="overFullScreen"
+        supportedOrientations={['landscape', 'portrait']}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <MainInfo mainInfoItems={mainInfoItems} />
-            <CountyList
-              error={error}
-              isLoading={isLoading}
-              counties={countyList}
-              onRefresh={getCounties}
-            />
-            <TouchableOpacity style={styles.button} onPress={onClose}>
-              <Text style={styles.buttonTextStyle}>{CLOSE_BUTTON_TEXT}</Text>
-            </TouchableOpacity>
+            {isLoading ? (
+              <ActivityIndicator size="large" />
+            ) : (
+              <>
+                <MainInfo mainInfoItems={mainInfoItems} />
+                <CountyList
+                  error={error}
+                  isLoading={isLoading}
+                  counties={countyList}
+                  onRefresh={getCounties}
+                />
+                <TouchableOpacity style={styles.button} onPress={onClose}>
+                  <Text style={styles.buttonTextStyle}>
+                    {CLOSE_BUTTON_TEXT}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
           </View>
         </View>
       </Modal>

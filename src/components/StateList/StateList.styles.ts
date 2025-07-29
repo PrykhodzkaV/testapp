@@ -1,15 +1,13 @@
-import { Platform, StatusBar, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { colors } from '@/constants/colors';
-
-const statusBarHeight =
-  Platform.OS === 'android' ? StatusBar.currentHeight || 0 : 0;
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: statusBarHeight + 8,
+    paddingTop: 12,
     paddingHorizontal: 24,
+    backgroundColor: colors.background,
   },
   filterInput: {
     height: 40,
