@@ -7,14 +7,15 @@ import {
   NO_STATE_DETAILS_FOUND_ERROR_MESSAGE,
 } from '@/constants';
 
-import { CountyListProps } from '../../types';
-
 import { countyItemContainerStyle, styles } from './CountyList.styles';
+import { CountyListProps } from '../types';
+import { MainInfo } from './MainInfo';
 
 export const CountyList = ({
   error,
   isLoading,
   counties,
+  mainInfoItems,
   onRefresh,
 }: CountyListProps) => {
   return error ? (
@@ -23,14 +24,13 @@ export const CountyList = ({
     <ActivityIndicator />
   ) : (
     <FlatList
+      ListHeaderComponent={<MainInfo mainInfoItems={mainInfoItems} />}
       refreshing={isLoading}
       onRefresh={onRefresh}
       data={counties}
       keyExtractor={({ county }) => county}
       showsVerticalScrollIndicator={false}
       initialNumToRender={10}
-      maxToRenderPerBatch={10}
-      windowSize={10}
       removeClippedSubviews={true}
       ListEmptyComponent={
         <ListEmpty message={EMPTY_STATE_DETAILS_LIST_MESSAGE} />
@@ -38,7 +38,9 @@ export const CountyList = ({
       renderItem={({ item, index }) => (
         <View style={countyItemContainerStyle(index).container}>
           <Text style={styles.countyItemTextStyle}>{item.county}</Text>
-          <Text style={styles.countyItemNumberStyle}>{item.population}</Text>
+          <Text style={styles.countyItemNumberStyle}>
+            {item.population.toString()}
+          </Text>
         </View>
       )}
     />

@@ -1,19 +1,22 @@
-import { Action, ActionType, AppState } from './types';
+import { Action, ActionType, AppState, StateItem } from './types';
 
 export const initialState: AppState = {
   states: [],
-  error: undefined,
-  isLoading: false,
 };
 
 export const appReducer = (state: AppState, action: Action) => {
   switch (action.type) {
     case ActionType.SET_STATES:
-      return { ...state, states: action.payload.states };
-    case ActionType.SET_ERROR:
-      return { ...state, error: action.payload.error };
-    case ActionType.SET_LOADING:
-      return { ...state, isLoading: action.payload.isLoading };
+      return {
+        ...state,
+        states: action.payload.states.map(
+          item =>
+            ({
+              ...item,
+              isHighlighted: false,
+            } as StateItem),
+        ),
+      };
     case ActionType.SET_STATE_DETAILS:
       return {
         ...state,

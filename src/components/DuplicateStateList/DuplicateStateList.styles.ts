@@ -1,12 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '@/constants/colors';
+import { colors, DEFAULT_FONT_SIZE } from '@/constants';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 12,
-    paddingHorizontal: 24,
     backgroundColor: colors.background,
   },
   filterInput: {
@@ -16,12 +15,12 @@ export const styles = StyleSheet.create({
     borderRadius: 16,
     paddingHorizontal: 12,
     marginBottom: 16,
-    fontSize: 16,
+    fontSize: DEFAULT_FONT_SIZE,
   },
   header: {
     backgroundColor: colors.background,
     paddingBottom: 8,
-    fontSize: 16,
+    fontSize: DEFAULT_FONT_SIZE,
     fontWeight: 'bold',
   },
 });

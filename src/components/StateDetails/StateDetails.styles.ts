@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '@/constants/colors';
+import { colors, DEFAULT_FONT_SIZE } from '@/constants';
 
 export const styles = StyleSheet.create({
   centeredView: {
@@ -12,20 +12,15 @@ export const styles = StyleSheet.create({
     paddingBottom: 0,
   },
 
-  modalView: {
-    width: '90%',
-    maxHeight: '80%',
-    backgroundColor: 'white',
-    borderRadius: 16,
-    padding: 24,
-    shadowColor: colors.text,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+  container: {
+    paddingTop: 12,
+    flex: 1,
+  },
+  header: {
+    backgroundColor: colors.background,
+    paddingBottom: 8,
+    fontSize: DEFAULT_FONT_SIZE,
+    fontWeight: 'bold',
   },
 
   button: {
@@ -48,7 +43,7 @@ export const styles = StyleSheet.create({
   modalText: {
     marginBottom: 16,
     textAlign: 'left',
-    fontSize: 16,
+    fontSize: DEFAULT_FONT_SIZE,
     flexWrap: 'wrap',
   },
 });

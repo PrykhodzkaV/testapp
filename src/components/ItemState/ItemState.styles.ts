@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '@/constants/colors';
+import { colors, DEFAULT_FONT_SIZE } from '@/constants';
 
 export const styles = (isHighlighted: boolean) =>
   StyleSheet.create({
@@ -17,6 +17,6 @@ export const styles = (isHighlighted: boolean) =>
       borderRadius: 16,
     },
     textStyle: {
-      fontSize: 16,
+      fontSize: DEFAULT_FONT_SIZE,
     },
   });

@@ -9,6 +9,7 @@ export const fetchWrapper = async ({
 }: FetchWrapperParams) => {
   try {
     startLoading();
+    setError(undefined);
     const response = await fetch(url);
     const json = await response.json();
     setData(json.data);

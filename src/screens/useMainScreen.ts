@@ -1,12 +1,18 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { AppContext } from '@/context';
 import { useFetchStates } from '@/hooks';
 import { StateItem } from '@/types';
 
 export const useMainScreen = () => {
   const { state } = useContext(AppContext);
-  const { getStates } = useFetchStates();
-  const { isLoading, error, states } = state;
+  const { states } = state;
+  const { getStates, isLoading, error } = useFetchStates();
+  const [selectedItem, setSelectedItem] = useState<StateItem>();
+
+  useEffect(() => {
+    getStates();
+  }, [getStates]);
+
   const [filteredStates, setFilteredStates] = useState<StateItem[]>(states);
   const [filterText, setFilterText] = useState('');
 
@@ -21,12 +27,19 @@ export const useMainScreen = () => {
     setFilteredStates(newFilteredStates);
   }, [newFilteredStates, setFilteredStates]);
 
+  const onRefresh = useCallback(() => {
+    getStates();
+    setSelectedItem(undefined);
+  }, []);
+
   return {
     filterText,
     setFilterText,
     filteredStates,
     isLoading,
     error,
-    getStates,
+    onRefresh,
+    selectedItem,
+    setSelectedItem,
   };
 };

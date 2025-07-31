@@ -1,11 +1,16 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 
 import { AppContext } from '@/context';
 import { ActionType, StateItem } from '@/types';
 
-export const useStateItem = (stateItem: StateItem) => {
-  const [modalVisible, setModalVisible] = useState(false);
+export const useStateItem = ({
+  stateItem,
+  setSelectedItem,
+}: {
+  stateItem: StateItem;
+  setSelectedItem?: (value: StateItem) => void;
+}) => {
   const { dispatch } = useContext(AppContext);
   const doubleTap = Gesture.Tap()
     .numberOfTaps(2)
@@ -23,11 +28,11 @@ export const useStateItem = (stateItem: StateItem) => {
     .requireExternalGestureToFail(doubleTap)
     .onEnd((_event, success) => {
       if (success) {
-        setModalVisible(true);
+        setSelectedItem?.(stateItem);
       }
     });
 
   const composedGesture = Gesture.Race(doubleTap, singleTap);
 
-  return { composedGesture, modalVisible, setModalVisible };
+  return { composedGesture };
 };

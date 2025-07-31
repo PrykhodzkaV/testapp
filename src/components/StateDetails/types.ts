@@ -14,8 +14,9 @@ export interface MainInfoItem {
 }
 
 export interface CountyListProps {
-  counties: County[];
+  counties?: County[];
   error?: Error;
   isLoading: boolean;
+  mainInfoItems?: MainInfoItem[];
   onRefresh: () => void;
 }

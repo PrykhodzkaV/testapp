@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
+import { styles } from './MainInfo.styles';
 import { MainInfoItem } from '../../types';
 
-import { styles } from './MainInfo.styles';
-
 export const MainInfo = React.memo(
-  ({ mainInfoItems }: { mainInfoItems: MainInfoItem[] }) => {
+  ({ mainInfoItems }: { mainInfoItems?: MainInfoItem[] }) => {
+    if (!mainInfoItems) return null;
     return (
       <View style={styles.info}>
         {mainInfoItems.map(({ value, label, style }) => {

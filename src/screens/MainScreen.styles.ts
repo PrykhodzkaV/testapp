@@ -1,16 +1,23 @@
-import { Platform, StatusBar, StyleSheet } from 'react-native';
-const statusBarHeight =
-  Platform.OS === 'android' ? StatusBar.currentHeight || 0 : 0;
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: statusBarHeight,
+    padding: 12,
+  },
+  listContainer: {
+    flex: 1,
     flexDirection: 'row',
+    gap: 16,
   },
   loadingIndicator: {
     flex: 1,
   },
 
-  errorStyle: { justifyContent: 'center', alignItems: 'center', flex: 1 },
+  errorStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  button: { flex: 1 },
 });

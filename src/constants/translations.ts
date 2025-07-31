@@ -14,3 +14,5 @@ export const MATCHES = 'matches';
 export const DOES_NOT_MATCH = 'does not match';
 export const FIRST_LIST = 'First List';
 export const SECOND_LIST = 'Second List';
+export const STATE_DETAILS = 'State details';
+export const REFRESH = 'Refresh';

@@ -1,10 +1,11 @@
+import { DEFAULT_FONT_SIZE } from '@/constants';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   modalText: {
     marginBottom: 16,
     textAlign: 'left',
-    fontSize: 16,
+    fontSize: DEFAULT_FONT_SIZE,
     flexWrap: 'wrap',
   },
   info: {

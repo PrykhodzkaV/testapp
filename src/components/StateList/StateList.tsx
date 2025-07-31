@@ -8,12 +8,20 @@ import { ItemState } from '../ItemState';
 import { ListEmpty } from '../ListEmpty';
 
 import { styles } from './StateList.styles';
+import { StateItem } from '@/types';
 
 export const StateList = React.memo(
-  ({ onRefresh }: { onRefresh: () => void }) => {
+  ({
+    onRefresh,
+    isLoading,
+    setSelectedItem,
+  }: {
+    onRefresh: () => void;
+    isLoading: boolean;
+    setSelectedItem: (value: StateItem) => void;
+  }) => {
     const { state: contextState } = useContext(AppContext);
-    const { states, isLoading } = contextState;
-
+    const { states } = contextState;
     return (
       <View style={styles.container}>
         <FlatList
@@ -27,7 +35,9 @@ export const StateList = React.memo(
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           renderItem={({ item }) => {
-            return <ItemState {...item} />;
+            return (
+              <ItemState stateItem={item} setSelectedItem={setSelectedItem} />
+            );
           }}
           ListEmptyComponent={<ListEmpty message={EMPTY_STATE_LIST_MESSAGE} />}
         />

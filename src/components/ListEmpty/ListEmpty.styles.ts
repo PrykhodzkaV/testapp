@@ -1,3 +1,4 @@
+import { DEFAULT_FONT_SIZE } from '@/constants';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -7,6 +8,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textStyle: {
-    fontSize: 16,
+    fontSize: DEFAULT_FONT_SIZE,
   },
 });

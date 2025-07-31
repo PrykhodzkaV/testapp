@@ -1,3 +1,5 @@
+import { StateItem } from '@/types';
+
 export interface State {
   state: string;
   population: number;
@@ -14,6 +16,6 @@ export interface FetchWrapperParams {
   url: string;
   startLoading: () => void;
   finishLoading: () => void;
-  setData: (data: County[]) => void;
-  setError: (error: Error) => void;
+  setData: (data: unknown[]) => void;
+  setError: (error?: Error) => void;
 }

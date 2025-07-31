@@ -1,27 +1,28 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '@/constants/colors';
+import { colors, DEFAULT_FONT_SIZE } from '@/constants';
 
 export const styles = StyleSheet.create({
   countyItemTextStyle: {
-    fontSize: 16,
+    fontSize: DEFAULT_FONT_SIZE,
     flexWrap: 'wrap',
+    flexShrink: 1,
   },
   countyItemNumberStyle: {
-    fontSize: 16,
+    fontSize: DEFAULT_FONT_SIZE,
     fontWeight: 'bold',
     flexWrap: 'wrap',
+    flexShrink: 1,
   },
 });
 
 export const countyItemContainerStyle = (index: number) =>
   StyleSheet.create({
     container: {
-      justifyContent: 'space-between',
-      flexDirection: 'row',
-      paddingVertical: 8,
+      flex: 1,
+      gap: 8,
+      paddingBottom: 8,
       backgroundColor:
-        index % 2 === 0 ? colors.highlightBackground : colors.background,
-      flexWrap: 'wrap',
+        index % 2 !== 0 ? colors.highlightBackground : colors.background,
     },
   });

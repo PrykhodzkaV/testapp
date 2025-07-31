@@ -9,7 +9,13 @@ import { ListEmpty } from '../ListEmpty';
 import { styles } from './DuplicateStateList.styles';
 import { StateItem } from '@/types';
 
-export const DuplicateStateList = ({ states }: { states: StateItem[] }) => {
+export const DuplicateStateList = ({
+  states,
+  setSelectedItem,
+}: {
+  states: StateItem[];
+  setSelectedItem: (value: StateItem) => void;
+}) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -19,7 +25,9 @@ export const DuplicateStateList = ({ states }: { states: StateItem[] }) => {
         data={states}
         keyExtractor={({ state }) => state}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <ItemState {...item} />}
+        renderItem={({ item }) => (
+          <ItemState stateItem={item} setSelectedItem={setSelectedItem} />
+        )}
         ListEmptyComponent={<ListEmpty message={EMPTY_STATE_LIST_MESSAGE} />}
       />
     </View>

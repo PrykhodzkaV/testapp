@@ -3,3 +3,4 @@ export * from './ErrorView';
 export * from './ListEmpty';
 export * from './StateList';
 export * from './SearchField';
+export * from './StateDetails';

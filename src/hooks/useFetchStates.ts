@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext, useState } from 'react';
 
 import { fetchWrapper, State, URL_STATES } from '@/api';
 import { AppContext } from '@/context';
@@ -6,32 +6,22 @@ import { ActionType } from '@/types';
 
 export const useFetchStates = () => {
   const { dispatch } = useContext(AppContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | undefined>(undefined);
+
   const getStates = useCallback(async () => {
     await fetchWrapper({
       url: URL_STATES,
-      startLoading: () =>
-        dispatch({
-          type: ActionType.SET_LOADING,
-          payload: { isLoading: true },
-        }),
+      startLoading: () => setIsLoading(true),
       setData: data =>
         dispatch({
           type: ActionType.SET_STATES,
           payload: { states: data as State[] },
         }),
-      setError: error =>
-        dispatch({ type: ActionType.SET_ERROR, payload: { error } }),
-      finishLoading: () =>
-        dispatch({
-          type: ActionType.SET_LOADING,
-          payload: { isLoading: false },
-        }),
+      setError: error => setError(error as Error),
+      finishLoading: () => setIsLoading(false),
     });
   }, [dispatch]);
 
-  useEffect(() => {
-    getStates();
-  }, [getStates]);
-
-  return { getStates };
+  return { getStates, isLoading, error };
 };
